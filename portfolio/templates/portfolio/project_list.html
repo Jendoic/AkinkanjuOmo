@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<!-- HERO -->
+<section class="min-h-screen flex items-center">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+        <div class="flex justify-center">
+            <img src="{% static 'images/Hero1.jpg' %}" class="w-100 rounded-2xl" alt="Profile" />
+        </div>
+
+        <div>
+            <h1 class="text-5xl md:text-6xl font-bold">
+                PORTFOLIO <span class="text-accent">2024</span>
+            </h1>
+            <p class="mt-4 text-sm text-gray-400 text-center">
+                CONTENT CREATOR/VIDEO EDITOR
+            </p>
+
+            <nav class="mt-10 space-y-3 text-sm text-gray-600 text-center">
+                <a href="#about" class="block hover:text-accent">START</a>
+                <a href="#projects" class="block hover:text-accent">PROJECT</a>
+                <a href="#contact" class="block hover:text-accent">CONTACT PERSON</a>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-24">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
+        <img src="{% static 'images/Hero2.jpg' %}" class="rounded-2xl w-72" alt="About" />
+
+        <div>
+            <h2 class="text-3xl font-semibold mb-4">ABOUT ME</h2>
+            <p class="text-sm text-gray-400 leading-relaxed">
+                Hi, I'm Olajide AkinkanjuOmo. I focus on editing, Content creation,
+                and visual storytelling. I keep improving every year.
+            </p>
+
+            <h3 class="mt-8 mb-4 font-semibold">SOFTWARE SKILLS</h3>
+            <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-zinc-900 rounded-lg text-sm">Premiere Pro</span>
+                <span class="px-4 py-2 bg-zinc-900 rounded-lg text-sm">Final Cut Pro</span>
+                <span class="px-4 py-2 bg-zinc-900 rounded-lg text-sm">CapCut</span>
+                <span class="px-4 py-2 bg-zinc-900 rounded-lg text-sm">Davinci</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-24">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-semibold mb-6">PROJECTS</h2>
+
+        <!-- Categories -->
+        <div class="flex flex-wrap gap-3 mb-10 text-sm">
+            <button onclick="filterProjects('all')" class="bg-accent text-white p-2 rounded-lg">
+                All
+            </button>
+
+            {% for category in categories %}
+            <button onclick="filterProjects('{{ category.slug }}')"
+                class="filter-btn hover:bg-accent hover:text-white p-2 rounded-lg">
+                {{ category.name }}
+            </button>
+            {% endfor %}
+        </div>
+
+
+        <!-- Fashion & Lifestyle -->
+        {% for category in categories %}
+        <h3 class="text-xl font-semibold mb-4 mt-12">
+            {{ category.name|title }}
+        </h3>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-14">
+            {% for project in category.projects.all %}
+            <div data-category="{{ category.slug }}"
+                class="project-card mx-auto w-full max-w-[160px] sm:max-w-[200px] md:max-w-none rounded-xl overflow-hidden bg-zinc-900 transition-all duration-200 ease-out">
+
+                <div class="aspect-[9/16] bg-black">
+                    <video onclick="openModal('{{project.video.url}}')"
+                        class="cursor-pointer w-full h-full object-cover " loop playsinline controlsList="nodownload"
+                        autoplay muted preload="metadata">
+                        <!-- <source src="{{ project.video.url }}"> -->
+                    </video>
+                </div>
+
+                <!-- <div class="p-3 text-sm">
+                    {{ project.name }}
+                </div> -->
+            </div>
+            {% empty %}
+            <p class="text-gray-500 text-sm">No projects yet.</p>
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
+        <div>
+            <h2 class="text-3xl font-semibold mb-6">CONTACT ME</h2>
+            <ul class="text-sm text-gray-400 space-y-3">
+                <li>Instagram — @olajideakinkanjuomo</li>
+                <li>TikTok — @olajideakinkanjuomo</li>
+                <li>Email — olajideakinkanjuomo@email.com</li>
+            </ul>
+        </div>
+
+        <div class="text-center">
+            <h1 class="text-6xl font-bold text-gray-700">THANK YOU<br />2025</h1>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

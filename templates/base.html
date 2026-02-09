@@ -1,0 +1,78 @@
+<!doctype html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { poppins: ["Poppins", "sans-serif"] },
+            colors: {
+              darkbg: "#02070d",
+              card: "#081726",
+              accent: "#4cc9f0",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-black text-white font-poppins">
+
+
+    {% block content %}
+
+    {% endblock content %}
+
+
+    <footer class="text-center py-10 text-xs text-gray-600">
+      © 2026 Olajide AkinkanjuOmo. All rights reserved.
+    </footer>
+
+    <!-- <script>
+      function filterProjects(category) {
+        const cards = document.querySelectorAll(".project-card");
+        cards.forEach((card) => {
+          if (category === "all" || card.dataset.category === category) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      }
+    </script> -->
+
+
+    <script>
+      function filterProjects(category) {
+        const cards = document.querySelectorAll(".project-card");
+
+        cards.forEach((card) => {
+          const match =
+            category === "all" || card.dataset.category === category;
+
+          if (match) {
+            card.classList.remove("hidden");
+            card.classList.remove("opacity-0", "scale-95");
+            card.classList.add("opacity-100", "scale-100");
+          } else {
+            card.classList.add("opacity-0", "scale-95");
+            setTimeout(() => {
+              card.classList.add("hidden");
+            }, 200);
+          }
+        });
+      }
+
+
+    </script>
+  </body>
+
+</html>
