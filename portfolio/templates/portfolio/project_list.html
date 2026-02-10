@@ -11,7 +11,7 @@
         </div>
 
         <div>
-            <h1 class="text-5xl md:text-6xl font-bold">
+            <h1 class="text-5xl md:text-6xl font-bold text-center">
                 PORTFOLIO <span class="text-accent"><i class='bx bxs-folder-open'></i></span>
             </h1>
             <p class="mt-4 text-sm text-gray-400 text-center">
@@ -81,12 +81,11 @@
             <div data-category="{{ category.slug }}"
                 class="project-card mx-auto w-full max-w-[160px] sm:max-w-[200px] md:max-w-none rounded-xl overflow-hidden bg-zinc-900 transition-all duration-200 ease-out">
 
-                <div class="aspect-[9/16] bg-black">
-                    <video onclick="openModal('{{project.video.url}}')"
-                        class="cursor-pointer w-full h-full object-cover " loop playsinline controlsList="nodownload"
-                        autoplay muted preload="metadata">
-                        <!-- <source src="{{ project.video.url }}"> -->
-                    </video>
+                <div class="relative aspect-[9/16] bg-black overflow-hidden">
+                    <iframe
+                        src="https://player.vimeo.com/video/{{ project.vimeo_id }}?controls=1&title=0&byline=0&portrait=0"
+                        class="absolute inset-0 w-full h-full" frameborder="0" allow="" loading="lazy">
+                    </iframe>
                 </div>
 
                 <!-- <div class="p-3 text-sm">
@@ -122,3 +121,10 @@
 
 
 {% endblock content %}
+
+
+
+<!-- <iframe src="https://player.vimeo.com/video/1163340215?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+    width="720" height="1280" frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+    referrerpolicy="strict-origin-when-cross-origin" title="42e7aaff81a04fd1aba0b5dbf921f97c"></iframe> -->
